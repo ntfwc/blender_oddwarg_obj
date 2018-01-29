@@ -843,8 +843,21 @@ def load(operator, context, filepath,
         to be split into objects and then converted into mesh objects
     """
 
-    def handle_loc_vec(line_start, context_multi_line, line_split, tag, data, vec, vec_len, extended_part, verts_loc_oddw_groups):
+    def handle_loc_vec(line_start, context_multi_line, line_split, tag, data, vec, vec_len, extended_part, verts_loc_oddw_vgroup_data):
         ret_context_multi_line = handle_vec(line_start, context_multi_line, line_split, tag, data, vec, vec_len)
+        extended_part = extended_part.strip()
+        vert_oddw_vgroup_data = []
+        if (len(extended_part) != 0):
+            index = None
+            for item in extended_part.split():
+                if (index == None):
+                    index = int(item)
+                else:
+                    weight = float(item)
+                    vert_oddw_vgroup_data.append((index, weight))
+                    index = None
+        
+        verts_loc_oddw_vgroup_data.append(vert_oddw_vgroup_data)
         return ret_context_multi_line
 
     def handle_vec(line_start, context_multi_line, line_split, tag, data, vec, vec_len):
@@ -883,7 +896,7 @@ def load(operator, context, filepath,
         time_main = time.time()
 
         verts_loc = []
-        verts_loc_oddw_groups = []
+        verts_loc_oddw_vgroup_data = []
         verts_nor = []
         verts_tex = []
         faces = []  # tuples of the faces
@@ -941,7 +954,7 @@ def load(operator, context, filepath,
                 line_start = line_split[0]  # we compare with this a _lot_
 
                 if line_start == b'v' or context_multi_line == b'v':
-                    context_multi_line = handle_loc_vec(line_start, context_multi_line, line_split, b'v', verts_loc, vec, 3, extended_part, verts_loc_oddw_groups)
+                    context_multi_line = handle_loc_vec(line_start, context_multi_line, line_split, b'v', verts_loc, vec, 3, extended_part, verts_loc_oddw_vgroup_data)
 
                 elif line_start == b'vn' or context_multi_line == b'vn':
                     context_multi_line = handle_vec(line_start, context_multi_line, line_split, b'vn', verts_nor, vec, 3)

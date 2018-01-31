@@ -895,6 +895,8 @@ def load(operator, context, filepath,
 
         time_main = time.time()
 
+        oddw_vgroups = []
+
         verts_loc = []
         verts_loc_oddw_vgroup_data = []
         verts_nor = []
@@ -946,6 +948,15 @@ def load(operator, context, filepath,
                 partition = line.partition(b'#@')
                 line = partition[0]
                 extended_part = partition[2]
+
+                # Collect the vgroup names
+                if len(line) == 0 and len(extended_part) != 0:
+                    if extended_part.startswith(b'N'):
+                        trimmedName = extended_part[1:].strip()
+                        if len(trimmedName) != 0:
+                            oddw_vgroups.append(trimmedName)
+                        continue
+
                 line_split = line.split()
 
                 if not line_split:

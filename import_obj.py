@@ -1170,6 +1170,9 @@ def load(operator, context, filepath,
         # Split the mesh by objects/materials, may
         SPLIT_OB_OR_GROUP = bool(use_split_objects or use_split_groups)
 
+        # Create vertex group data from oddwarg extensions
+        vertex_groups = create_vgroup_data(oddw_vgroups, verts_loc_oddw_vgroup_data)
+
         for data in split_mesh(verts_loc, faces, unique_materials, filepath, SPLIT_OB_OR_GROUP):
             verts_loc_split, faces_split, unique_materials_split, dataname, use_vnor, use_vtex = data
             # Create meshes from the data, warning 'vertex_groups' wont support splitting
@@ -1228,3 +1231,9 @@ def load(operator, context, filepath,
         progress.leave_substeps("Finished importing: %r" % filepath)
 
     return {'FINISHED'}
+
+def create_vgroup_data(oddw_vgroups, verts_loc_oddw_vgroup_data):
+    vgroup_data = {}
+    for vgroup in oddw_vgroups:
+        vgroup_data[vgroup] = []
+    return vgroup_data

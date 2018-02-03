@@ -474,7 +474,7 @@ def create_mesh(new_objects,
                 unique_materials,
                 unique_material_images,
                 unique_smooth_groups,
-                vertex_groups,
+                vgroup_data,
                 dataname,
                 ):
     """
@@ -716,7 +716,7 @@ def create_mesh(new_objects,
     # Create the vertex groups. No need to have the flag passed here since we test for the
     # content of the vertex_groups. If the user selects to NOT have vertex groups saved then
     # the following test will never run
-    for group_name, group_indices in vertex_groups.items():
+    for group_name, group_indices in vgroup_data.items():
         group = ob.vertex_groups.new(group_name.decode('utf-8', "replace"))
         group.add(group_indices, 1.0, 'REPLACE')
 
@@ -1171,7 +1171,7 @@ def load(operator, context, filepath,
         SPLIT_OB_OR_GROUP = bool(use_split_objects or use_split_groups)
 
         # Create vertex group data from oddwarg extensions
-        vertex_groups = create_vgroup_data(oddw_vgroups, verts_loc_oddw_vgroup_data)
+        vgroup_data = create_vgroup_data(oddw_vgroups, verts_loc_oddw_vgroup_data)
 
         for data in split_mesh(verts_loc, faces, unique_materials, filepath, SPLIT_OB_OR_GROUP):
             verts_loc_split, faces_split, unique_materials_split, dataname, use_vnor, use_vtex = data
@@ -1186,7 +1186,7 @@ def load(operator, context, filepath,
                         unique_materials_split,
                         unique_material_images,
                         unique_smooth_groups,
-                        vertex_groups,
+                        vgroup_data,
                         dataname,
                         )
 

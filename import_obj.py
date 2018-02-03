@@ -716,9 +716,10 @@ def create_mesh(new_objects,
     # Create the vertex groups. No need to have the flag passed here since we test for the
     # content of the vertex_groups. If the user selects to NOT have vertex groups saved then
     # the following test will never run
-    for group_name, group_indices in vgroup_data.items():
+    for group_name, index_and_weight_pairs in vgroup_data.items():
         group = ob.vertex_groups.new(group_name.decode('utf-8', "replace"))
-        group.add(group_indices, 1.0, 'REPLACE')
+        for vert_index, weight in index_and_weight_pairs:
+            group.add((vert_index,), weight, 'REPLACE')
 
 
 def create_nurbs(context_nurbs, vert_loc, new_objects):
@@ -1236,4 +1237,11 @@ def create_vgroup_data(oddw_vgroups, verts_loc_oddw_vgroup_data):
     vgroup_data = {}
     for vgroup in oddw_vgroups:
         vgroup_data[vgroup] = []
+
+    for i in range(len(verts_loc_oddw_vgroup_data)):
+        vert_group_data = verts_loc_oddw_vgroup_data[i]
+        for vgroup_index, weight in vert_group_data:
+            vgroup = oddw_vgroups[vgroup_index]
+            vgroup_data[vgroup].append((i, weight))
+
     return vgroup_data

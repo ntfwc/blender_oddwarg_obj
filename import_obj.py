@@ -19,10 +19,10 @@
 # <pep8 compliant>
 
 # Script copyright (C) Campbell Barton
-# Contributors: Campbell Barton, Jiri Hnidek, Paolo Ciccone
+# Contributors: Campbell Barton, Jiri Hnidek, Paolo Ciccone, ntfwc
 
 """
-This script imports a Wavefront OBJ files to Blender.
+This script imports Wavefront OBJ files, with Oddward extensions, to Blender.
 
 Usage:
 Run this script from "File->Import" menu and then load the desired OBJ file.

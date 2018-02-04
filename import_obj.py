@@ -217,7 +217,9 @@ def create_materials(filepath, relpath,
                         emit_value = sum(emit_colors) / 3.0
                         if emit_value > 1e-6:
                             # We have to adapt it to diffuse color too...
-                            emit_value /= sum(context_material.diffuse_color) / 3.0
+                            emit_div = sum(context_material.diffuse_color) / 3.0
+                            emit_div = emit_div if emit_div != 0 else 0.000001
+                            emit_value /= emit_div
                         context_material.emit = emit_value
 
                         if not do_ambient:

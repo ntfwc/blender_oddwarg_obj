@@ -19,17 +19,15 @@
 # <pep8-80 compliant>
 
 bl_info = {
-    "name": "Wavefront OBJ format",
-    "author": "Campbell Barton, Bastien Montagne",
+    "name": "Wavefront OBJ format, with Oddwarg extensions",
+    "author": "Campbell Barton, Bastien Montagne, ntfwc",
     "version": (2, 2, 1),
     "blender": (2, 74, 0),
     "location": "File > Import-Export",
     "description": "Import-Export OBJ, Import OBJ mesh, UV's, "
                    "materials and textures",
     "warning": "",
-    "wiki_url": "http://wiki.blender.org/index.php/Extensions:2.6/Py/"
-                "Scripts/Import-Export/Wavefront_OBJ",
-    "support": 'OFFICIAL',
+    "support": 'COMMUNITY',
     "category": "Import-Export"}
 
 if "bpy" in locals():
@@ -309,7 +307,7 @@ class ExportOBJ(bpy.types.Operator, ExportHelper, IOOBJOrientationHelper):
 
 
 def menu_func_import(self, context):
-    self.layout.operator(ImportOBJ.bl_idname, text="Wavefront (.obj)")
+    self.layout.operator(ImportOBJ.bl_idname, text="Wavefront, with oddwarg extensions (.obj)")
 
 
 def menu_func_export(self, context):

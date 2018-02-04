@@ -925,6 +925,7 @@ def load(operator, context, filepath,
         progress.enter_substeps(3, "Parsing OBJ file...")
         with open(filepath, 'rb') as f:
             for line in f:  # .readlines():
+                line = line.partition(b'#')[0]
                 line_split = line.split()
 
                 if not line_split:

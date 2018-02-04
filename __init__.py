@@ -34,8 +34,8 @@ if "bpy" in locals():
     import importlib
     if "import_obj" in locals():
         importlib.reload(import_obj)
-    if "export_obj" in locals():
-        importlib.reload(export_obj)
+#    if "export_obj" in locals():
+#        importlib.reload(export_obj)
 
 
 import bpy
@@ -310,22 +310,22 @@ def menu_func_import(self, context):
     self.layout.operator(ImportOBJ.bl_idname, text="Wavefront, with oddwarg extensions (.obj)")
 
 
-def menu_func_export(self, context):
-    self.layout.operator(ExportOBJ.bl_idname, text="Wavefront (.obj)")
+#def menu_func_export(self, context):
+#    self.layout.operator(ExportOBJ.bl_idname, text="Wavefront (.obj)")
 
 
 def register():
     bpy.utils.register_module(__name__)
 
     bpy.types.INFO_MT_file_import.append(menu_func_import)
-    bpy.types.INFO_MT_file_export.append(menu_func_export)
+    #bpy.types.INFO_MT_file_export.append(menu_func_export)
 
 
 def unregister():
     bpy.utils.unregister_module(__name__)
 
     bpy.types.INFO_MT_file_import.remove(menu_func_import)
-    bpy.types.INFO_MT_file_export.remove(menu_func_export)
+    #bpy.types.INFO_MT_file_export.remove(menu_func_export)
 
 if __name__ == "__main__":
     register()

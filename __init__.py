@@ -106,8 +106,9 @@ class ImportOBJ(bpy.types.Operator, ImportHelper, IOOBJOrientationHelper):
 
     split_mode = EnumProperty(
             name="Split",
-            items=(('ON', "Split", "Split geometry, omits unused verts"),
+            items=(
                    ('OFF', "Keep Vert Order", "Keep vertex order from file"),
+                   ('ON', "Split", "Split geometry, omits unused verts"),
                    ),
             )
 

@@ -22,7 +22,7 @@
 # Contributors: Campbell Barton, Jiri Hnidek, Paolo Ciccone, ntfwc
 
 """
-This script imports Wavefront OBJ files, with Oddward extensions, to Blender.
+This script imports Wavefront OBJ files, with Oddwarg extensions, to Blender.
 
 Usage:
 Run this script from "File->Import" menu and then load the desired OBJ file.

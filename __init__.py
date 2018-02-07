@@ -54,7 +54,7 @@ from bpy_extras.io_utils import (
         )
 
 
-IOOBJOrientationHelper = orientation_helper_factory("IOOBJOrientationHelper", axis_forward='-Z', axis_up='Y')
+IOOBJOrientationHelper = orientation_helper_factory("IOOBJOrientationHelper", axis_forward='Y', axis_up='Z')
 
 
 class ImportOBJ(bpy.types.Operator, ImportHelper, IOOBJOrientationHelper):

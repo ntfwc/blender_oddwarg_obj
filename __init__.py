@@ -21,7 +21,7 @@
 bl_info = {
     "name": "Wavefront OBJ format, with Oddwarg extensions",
     "author": "Campbell Barton, Bastien Montagne, ntfwc",
-    "version": (1, 0, 1),
+    "version": (1, 0, 2),
     "blender": (2, 74, 0),
     "location": "File > Import-Export",
     "description": "Import-Export OBJ, Import OBJ mesh, UV's, "
